@@ -14,6 +14,9 @@ li{
 }
 
 /* サイドバー */
+.main-container{
+  width: 100%;
+}
 .sidebar{
   width:150px;
   height:100vh;
@@ -25,6 +28,22 @@ li{
 }
 .sidebar p a{
   color:#FFF;
+}
+
+.sidebar p {
+  padding: 12px 0 12px 0;
+  margin: 2px 0 2px -3px;
+}
+
+.sidebar p:hover {
+  background-color: rgba(12, 12, 12, 0.2);
+  transition: 0.3s;
+  padding-left: 5px;
+}
+
+.sidebar p a:hover {
+  text-decoration: none;
+  color: #ddd;
 }
 
 /* トップページ */
@@ -113,6 +132,18 @@ li{
 .post_bottom_area{
   justify-content: space-between;
 }
+
+.category_pt {
+  font-size: 9px;
+  font-weight: bold;
+  padding: 4px 10px;
+  background-color: #03AAD2;
+  color: #fff;
+  width: fit-content;
+  border-radius: 20px;
+  z-index: 1;
+}
+
 .like_btn,
 .un_like_btn{
   cursor:pointer;
@@ -172,8 +203,51 @@ li{
 .post_status span{
   font-size:12px;
 }
+/* 掲示板　検索 */
+.other_area {
+  padding-top: 50px;
+}
+
+.post-create {
+  background: linear-gradient(to left, #0a99ca, #00b4db);
+  opacity: 0.75;
+  border-radius: 5px;
+  height: 6vh;
+  text-align: center;
+  padding: 5px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.post-create a:hover {
+  text-decoration: none;
+}
+
+.post-create:hover {
+  opacity: 1;
+}
+
+.word-search {
+  margin-bottom: 30px;
+  display: flex;
+}
+
+.keyword_search {
+  width: 50px;
+}
+
+
 
 /* 掲示板　カテゴリー */
+.category_like {
+  background: linear-gradient(to left, #d94c7a, #e17397);
+}
+
+.category_mine {
+  background: linear-gradient(to left, #e1951a, #eeb12e);
+}
+
 .category_area{
   background:#FFF;
   border-radius:10px;
@@ -181,23 +255,88 @@ li{
 .category_box{
   border-radius:5px;
   padding:3px;
-  background:#999;
+  /* background:#999; */
   font-size:10px;
   color:#FFF;
 }
 .category_btn{
+  width: 100%;
   font-size:12px;
   border-radius:5px;
   padding:0 5px;
   border:none;
-  background:#999;
+  /* background:#999; */
   color:#FFF;
+  transition: 0.2s;
+  opacity: 0.75;
 }
+
+.category_lm {
+  display: flex;
+  height: 4vh;
+}
+
 .main_categories span,
 .sub_categories li input{
   list-style:none;
   cursor:pointer;
 }
+/* アコーディオンメニュー */
+.accordion-container {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+}
+
+.accordion-container .accordion-title {
+  margin: 0;
+  padding: 1em 0.5em;
+  cursor: pointer;
+}
+
+.accordion-title {
+  position: relative;
+  color: #555;
+  font-weight: bold;
+}
+
+.accordion-title:after {
+  content: "";
+  position: absolute;
+  right: 25px;
+  top: 38%;
+  transition: all 0.2s ease-in-out;
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-top: solid 2px #999;
+  border-right: solid 2px #999;
+  -webkit-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+
+.accordion-title.open:after {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 45%;
+}
+
+.accordion-content {
+  display: none;
+  padding-left: 0.5em;
+}
+
+.accordion-content input {
+  display: block;
+  color: #1d68a7;
+  font-size: 0.9em;
+}
+
+.accordion-content input:hover {
+  cursor: pointer;
+  color: #ffabce;
+}
+
 
 /* ユーザー検索 */
 .reserve_users_area{

@@ -45,6 +45,15 @@
         @if($user->role == 4)
         <span>選択科目 :</span>
         @endif
+        @foreach($user->subjects as $subject)
+        @if($subject->id == 1)
+        <span> 英語 </span>
+        @elseif($subject->id == 2)
+        <span> 国語 </span>
+        @elseif($subject->id == 3)
+        <span> 数学 </span>
+        @endif
+        @endforeach
       </div>
     </div>
     @endforeach
@@ -88,6 +97,9 @@
           </div>
           <div class="selected_engineer">
             <label>選択科目</label>
+            <li>英語 <input type="checkbox" name="subject" value="1" form="userSearchRequest"></li>
+            <li>国語 <input type="checkbox" name="subject" value="2" form="userSearchRequest"></li>
+            <li>数学 <input type="checkbox" name="subject" value="3" form="userSearchRequest"></li>
           </div>
         </div>
       </div>

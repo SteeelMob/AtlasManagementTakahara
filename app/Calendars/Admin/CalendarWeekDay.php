@@ -3,6 +3,7 @@ namespace App\Calendars\Admin;
 
 use Carbon\Carbon;
 use App\Models\Calendars\ReserveSettings;
+use Auth;
 
 class CalendarWeekDay{
   protected $carbon;
@@ -31,13 +32,13 @@ class CalendarWeekDay{
 
     $html[] = '<div class="text-left">';
     if($one_part){
-      $html[] = '<p class="day_part m-0 pt-1">1部</p>';
+      $html[] = '<p class="day_part m-0 pt-1"><a href="/calendar/'.Auth::id().'/'.$ymd.'/1">1部</a> <span>'.$one_part->users->count().'</span></p>';
     }
     if($two_part){
-      $html[] = '<p class="day_part m-0 pt-1">2部</p>';
+      $html[] = '<p class="day_part m-0 pt-1"><a href="/calendar/'.Auth::id().'/'.$ymd.'/2">2部</a> <span>'.$two_part->users->count().'</span></p>';
     }
     if($three_part){
-      $html[] = '<p class="day_part m-0 pt-1">3部</p>';
+      $html[] = '<p class="day_part m-0 pt-1"><a href="/calendar/'.Auth::id().'/'.$ymd.'/3">3部</a> <span>'.$three_part->users->count().'</span></p>';
     }
     $html[] = '</div>';
 

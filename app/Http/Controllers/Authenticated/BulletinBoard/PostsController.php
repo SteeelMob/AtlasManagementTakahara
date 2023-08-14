@@ -11,13 +11,17 @@ use App\Models\Posts\PostComment;
 use App\Models\Posts\Like;
 use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
+use App\Http\Requests\MainCategoryRequest;
+use App\Http\Requests\SubCategoryRequest;
+use App\Http\Requests\CommentRequest;
 use Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PostsController extends Controller
 {
     public function show(Request $request){
-        $posts = Post::with('user', 'postComments')->get();
-        $categories = MainCategory::get();
+        $posts = Post::with('user', 'postComments','subCategories')->get();
+        $categories = MainCategory::with('subCategories')->get();
         $like = new Like;
         $post_comment = new Post;
         if(!empty($request->keyword)){
@@ -26,7 +30,11 @@ class PostsController extends Controller
             ->orWhere('post', 'like', '%'.$request->keyword.'%')->get();
         }else if($request->category_word){
             $sub_category = $request->category_word;
-            $posts = Post::with('user', 'postComments')->get();
+            $sub_category_id = SubCategory::select('id')->where('sub_category', $sub_category)->first();
+            $posts = Post::with('user', 'postComments')
+            ->whereHas('subCategories', function ($q) use ($sub_category_id) {
+                $q->whereIn('post_sub_categories.sub_category_id', $sub_category_id);
+            })->get();
         }else if($request->like_posts){
             $likes = Auth::user()->likePostId()->get('like_post_id');
             $posts = Post::with('user', 'postComments')
@@ -55,10 +63,15 @@ class PostsController extends Controller
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
+        $sub_categories = SubCategory::where('id', $request->post_category_id)->get();
+        $posts = Post::findOrFail($post->id);
+        // findOrFail()は主キーに基づいてデータベースから対応する行を見つける。
+        $posts->subCategories()->attach($sub_categories);
+        // attachは多対多の関係において、中間テーブルにデータを保存するためのメソッド
         return redirect()->route('post.show');
     }
 
-    public function postEdit(Request $request){
+    public function postEdit(PostFormRequest $request){
         Post::where('id', $request->post_id)->update([
             'post_title' => $request->post_title,
             'post' => $request->post_body,
@@ -70,12 +83,40 @@ class PostsController extends Controller
         Post::findOrFail($id)->delete();
         return redirect()->route('post.show');
     }
-    public function mainCategoryCreate(Request $request){
+    public function mainCategoryCreate(MainCategoryRequest $request){
         MainCategory::create(['main_category' => $request->main_category_name]);
         return redirect()->route('post.input');
     }
 
-    public function commentCreate(Request $request){
+    public function subCategoryCreate(SubCategoryRequest $request)
+    {
+        SubCategory::create([
+            'sub_category' => $request->sub_category_name,
+            'main_category_id' => $request->main_category_id
+        ]);
+        return redirect()->route('post.input');
+    }
+
+    public function commentCreate(CommentRequest $request){//カッコ内をCommentRequestにしないとミドルウェアが反応しない
+        //バリデーション
+        // if($request->isMethod('post')){
+        //     $rules =[
+        //         'comment' => 'required|max:2500|string',
+        //     ];
+
+        //     $message = [
+        //         'comment.required' => 'コメントを入力して下さい',
+        //         'comment.max' => '内容は2500文字以内入力して下さい',
+        //         'comment.string' => '正しい文字列で入力して下さい',
+        //     ];
+
+        //     $validator =Validator::make($request->all(),$rules,$message);
+        //     if($validator->fails()){
+        //         return redirect()->route('post.detail')
+        //         ->withErrors($validator)
+        //         ->withInput();
+        //     }
+        // }
         PostComment::create([
             'post_id' => $request->post_id,
             'user_id' => Auth::id(),

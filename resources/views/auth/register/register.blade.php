@@ -23,12 +23,14 @@
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 over_name" name="over_name">
               </div>
+              <p>{{$errors->first('over_name')}}</p>
             </div>
             <div class="" style="width:140px">
               <label class=" d-block m-0" style="font-size:13px">名</label>
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 under_name" name="under_name">
               </div>
+              <p>{{$errors->first('under_name')}}</p>
             </div>
           </div>
           <div class="d-flex mt-3" style="justify-content:space-between">
@@ -37,6 +39,7 @@
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 over_name_kana" name="over_name_kana">
               </div>
+              <p>{{$errors->first('over_name_kana')}}</p>
             </div>
             <div class="" style="width:140px">
               <label class="d-block m-0" style="font-size:13px">メイ</label>
@@ -50,6 +53,7 @@
             <div class="border-bottom border-primary">
               <input type="mail" class="w-100 border-0 mail_address" name="mail_address">
             </div>
+            <p>{{ $errors->first('mail_address') }}</p>
           </div>
         </div>
         <div class="mt-3">
@@ -143,6 +147,10 @@
             <option value="31">31</option>
           </select>
           <label style="font-size:13px">月</label>
+          <p>{{ $errors->first('datetime') }}</p>
+          <p>{{ $errors->first('old_year') }}</p>
+          <p>{{ $errors->first('old_month') }}</p>
+          <p>{{ $errors->first('old_day') }}</p>
         </div>
         <div class="mt-3">
           <label class="d-block m-0" style="font-size:13px">役職</label>
@@ -169,12 +177,14 @@
           <div class="border-bottom border-primary">
             <input type="password" class="border-0 w-100 password" name="password">
           </div>
+          <p>{{ $errors->first('password') }}</p>
         </div>
         <div class="mt-3">
           <label class="d-block m-0" style="font-size:13px">確認用パスワード</label>
           <div class="border-bottom border-primary">
             <input type="password" class="border-0 w-100 password_confirmation" name="password">
           </div>
+          <p>{{ $errors->first('password_confirmation') }}</p>
         </div>
         <div class="mt-5 text-right">
           <input type="submit" class="btn btn-primary register_btn" disabled value="新規登録" onclick="return confirm('登録してよろしいですか？')">

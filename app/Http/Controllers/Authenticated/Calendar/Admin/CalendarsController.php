@@ -16,10 +16,11 @@ class CalendarsController extends Controller
 {
     public function show(){
         $calendar = new CalendarView(time());
+        // dd($calendar);
         return view('authenticated.calendar.admin.calendar', compact('calendar'));
     }
 
-    public function reserveDetail($date, $part){
+    public function reserveDetail($user_id, $date, $part){
         $reservePersons = ReserveSettings::with('users')->where('setting_reserve', $date)->where('setting_part', $part)->get();
         return view('authenticated.calendar.admin.reserve_detail', compact('reservePersons', 'date', 'part'));
     }

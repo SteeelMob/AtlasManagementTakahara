@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use DB;
-
+use App\Http\Requests\PostRequest;
 use App\Models\Users\Subjects;
 
 class RegisterController extends Controller
@@ -57,7 +57,7 @@ class RegisterController extends Controller
         return view('auth.register.register', compact('subjects'));
     }
 
-    public function registerPost(Request $request)
+    public function registerPost(PostRequest $request)
     {
         DB::beginTransaction();
         try{
