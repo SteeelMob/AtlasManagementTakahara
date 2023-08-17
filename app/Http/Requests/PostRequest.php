@@ -71,8 +71,6 @@ class PostRequest extends FormRequest
             'sex.required' => '※性別は「男性」「女性」「その他」から選択して下さい',
             'sex.between' => '※性別は「男性」「女性」「その他」から選択して下さい',
             'old_year.required_with' => '※生年月日が未入力です',
-            // 'old_year.after' => '※2000年1月1日から今日までの日付を入力して下さい',
-            // 'old_year.before' => '※2000年1月1日から今日までの日付を入力して下さい',
             'old_month.required_with' => '※生年月日が未入力です',
             'old_day.required_with' => '※生年月日が未入力です',
             'datetime.required' => '※生年月日が未入力です',
