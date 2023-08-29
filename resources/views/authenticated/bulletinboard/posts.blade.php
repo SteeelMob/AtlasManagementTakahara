@@ -32,8 +32,8 @@
     <div class="m-4">
       <div class="post-create"><a href="{{ route('post.input') }}" class="post_link text-white">投稿</a></div>
       <div class="word-search">
-        <input type="text" class="form-control keyword-search" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
-        <input type="submit" class="btn btn-outline-info" value="検索" form="postSearchRequest">
+        <input type="text" class="form-control keyword-search" style="border-radius: 5px 0px 0px 5px;" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
+        <input type="submit" class="btn btn-search text-white" style="border-radius: 0px 5px 5px 0px;" value="検索" form="postSearchRequest">
       </div>
       <div class="category_lm">
       <input type="submit" name="like_posts" class="category_btn category_like" value="いいねした投稿" form="postSearchRequest">
@@ -45,7 +45,7 @@
         <p class="main_categories accordion-title js-accordion-title">{{ $category->main_category }}</p>
         <div class="accordion-content">
           @foreach($category->subCategories as $sub_category)
-          <input type="submit" class="btn btn-sc" name="category_word" value="{{ $sub_category->sub_category }}" form="postSearchRequest">
+          <input type="submit" class="btn btn-sc" style="color:inherit" name="category_word" value="{{ $sub_category->sub_category }}" form="postSearchRequest">
           <input type="hidden" name="category_id" value="{{ $sub_category->id }}" form="postSearchRequest">
           @endforeach
         </div>

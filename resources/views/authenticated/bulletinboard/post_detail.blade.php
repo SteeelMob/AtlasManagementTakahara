@@ -4,16 +4,19 @@
   <div class="w-50 mt-5">
     <div class="m-3 detail_container">
       <div class="p-3">
+      @if($errors->first('post_title'))
+          <span class="error_message">{{ $errors->first('post_title') }}</span>
+          @endif
         <div class="detail_inner_head">
           <div>
             @foreach($post->subCategories as $sbctg)
-            <p class="category_btn">{{ $sbctg->sub_category }}</p>
+            <p class="category_pt">{{ $sbctg->sub_category }}</p>
             @endforeach
           </div>
           @if($post->user_id == Auth::user()->id)
-          <div>
-            <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-            <a href="{{ route('post.delete', ['id' => $post->id]) }}"  onclick = "return confirm('この投稿を削除します。よろしいでしょうか？')" >削除</a>
+          <div class="edit-btn">
+            <span class="edit-modal-open btn btn-primary btn-sm" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
+            <a href="{{ route('post.delete', ['id' => $post->id]) }}"  class="btn btn-danger btn-sm" onclick = "return confirm('この投稿を削除します。よろしいでしょうか？')" >削除</a>
           </div>
           @endif
         </div>
@@ -46,13 +49,13 @@
     </div>
   </div>
   <div class="w-50 p-3">
-    <div class="comment_container border m-5">
-      <div class="comment_area p-3">
-        <p class="m-0">コメントする</p>
-        @if($errors->has('comment'))
+    <div class="comment_container border m-5" style="border-radius: 10px;">
+      <div class="comment_area p-3" style=" margin-bottom: 24px;">
+      @if($errors->has('comment'))
         <span class="error_message">{{ $errors->first('comment') }}</span>
         @endif
-        <textarea class="w-100" name="comment" form="commentRequest"></textarea>
+        <p class="m-0">コメントする</p>
+        <textarea class="w-100 comment-text" style="outline: none;" name="comment" form="commentRequest"></textarea>
         <input type="hidden" name="post_id" form="commentRequest" value="{{ $post->id }}">
         <input type="submit" class="btn btn-primary" form="commentRequest" value="投稿">
         <form action="{{ route('comment.create') }}" method="post" id="commentRequest">{{ csrf_field() }}</form>
@@ -64,12 +67,9 @@
   <div class="modal__bg js-modal-close"></div>
   <div class="modal__content">
     <form action="{{ route('post.edit') }}" method="post">
-      <div class="w-100">
+      <div class="w-100 modal-box">
         <div class="modal-inner-title w-50 m-auto">
           <input type="text" name="post_title" placeholder="タイトル" class="w-100">
-          @if($errors->first('post_title'))
-          <span class="error_message">{{ $errors->first('post_title') }}</span>
-          @endif
         </div>
         <div class="modal-inner-body w-50 m-auto pt-3 pb-3">
           <textarea placeholder="投稿内容" name="post_body" class="w-100"></textarea>

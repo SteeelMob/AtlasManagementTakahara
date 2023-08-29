@@ -7,6 +7,7 @@
       <p class="mb-0">カテゴリー</p>
       <select class="w-100" form="postCreate" name="post_category_id">
         @foreach($main_categories as $main_category)
+        <option value="" selected>---</option>
         <optgroup label="{{ $main_category->main_category }}"></optgroup>
         <!-- サブカテゴリー表示 -->
         @foreach($main_category->subCategories as $sub_category)
@@ -37,34 +38,37 @@
   </div>
   @can('admin')
   <div class="w-25 ml-auto mr-auto">
-    <div class="category_area mt-5 p-5">
+    <div class="category_area mt-5">
+      <div class="create-box">
       <!-- <div class=""> -->
-        <p class="m-0">メインカテゴリー</p>
         @if($errors->has('main_category_name'))
         <span class="error_message">{{ $errors->first('main_category_name') }}</span>
         @endif
-        <input type="text" class="w-100" name="main_category_name" form="mainCategoryRequest">
+        <p class="m-0">メインカテゴリー</p>
+        <input type="text" class="w-100 form-control form-control-sm mt-2 mb-2" name="main_category_name" form="mainCategoryRequest">
         <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="mainCategoryRequest">
-      </div>
+      <!-- </div> -->
       <form action="{{ route('main.category.create') }}" method="post" id="mainCategoryRequest">{{ csrf_field() }}</form>
       <!-- サブカテゴリー追加 -->
       <div class="sub_ctg_create mt-5">
-      <p class="m-0">サブカテゴリー</p>
       @if($errors->first('main_category_id'))
       <span class="error_message">{{ $errors->first('main_category_id') }}</span>
       @endif
       @if($errors->first('sub_category_name'))
       <span class="error_message">{{ $errors->first('sub_category_name') }}</span>
       @endif
-      <select class="w-100 custom-select custom-select-sm" form="subCategoryRequest" name="main_category_id">
+      <p class="m-0">サブカテゴリー</p>
+      <select class="w-100 form-control form-control-sm " form="subCategoryRequest" name="main_category_id">
         @foreach($main_categories as $main_category)
+        <option value="{{ $main_category->id }}" selected>---</option>
         <option value="{{ $main_category->id }}">{{ $main_category->main_category }}</option>
         @endforeach
       </select>
-      <input type="text" class="" name="sub_category_name" form="subCategoryRequest" placeholder="sub category">
-        <input type="submit" value="追加" class="" form="subCategoryRequest">
+      <input type="text" class="w-100 form-control form-control-sm mt-2 mb-2" name="sub_category_name" form="subCategoryRequest" placeholder="">
+        <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryRequest">
       </div>
       <form action="{{ route('sub.category.create') }}" method="post" id="subCategoryRequest">{{ csrf_field() }}</form>
+      </div>
     </div>
   </div>
   @endcan

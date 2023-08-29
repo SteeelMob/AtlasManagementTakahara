@@ -63,7 +63,8 @@ li{
   color:#FF0000;
 }
 .past-day{
-  background:#EEE;
+  /* background:#EEE; */
+  background:#e8e6e6;
 }
 .calendar-td{
   min-width:100px;
@@ -83,6 +84,10 @@ li{
 }
 .adjust-table-btn{
   width:70%;
+}
+
+.reserve-d tr:nth-child(even){
+  background: #b1f3ff;
 }
 
 /* モーダル */
@@ -107,6 +112,10 @@ li{
     top: 50%;
     transform: translate(-50%,-50%);
     width: 60%;
+}
+
+.modal-box{
+  margin-top: 5px;
 }
 
 /* 掲示板 */
@@ -158,11 +167,17 @@ li{
 }
 
 /* 掲示板 詳細画面 */
+.detail_container{
+  border-radius: 10px;
+}
+
+
 .contributor{
   font-size:12px;
   color:#999;
   font-weight:bold;
 }
+
 .detsail_post_title{
   font-size:14px;
 }
@@ -185,14 +200,27 @@ li{
   justify-content: space-between;
 }
 /* 掲示板 コメント */
+.comment-text{
+  outline: solid 1px rgb(109, 109, 109);
+}
+
 .comment_container{
   background:#FFF;
 }
+
 .comment_area p,
 .comment_area input{
   font-size:12px;
   font-weight:bold;
 }
+
+.comment_area input{ 
+    float: right;
+    /* position: absolute;
+    top: 80%;
+    right: 9%; */
+}
+
 .comment_area textarea{
   height:300px;
   resize:none;
@@ -237,9 +265,19 @@ li{
   width: 50px;
 }
 
+.btn-search{
+  background: linear-gradient(to left, #0a99ca, #00b4db);
+  color: #D3D3D3;
+  border-radius: 0px 5px 5px 0px;
+}
+
 
 
 /* 掲示板　カテゴリー */
+.create-box{
+  padding: 30px 20px;
+}
+
 .category_like {
   background: linear-gradient(to left, #d94c7a, #e17397);
 }
@@ -296,8 +334,11 @@ li{
 
 .accordion-title {
   position: relative;
-  color: #555;
+  /* color: #5e5d5d; */
   font-weight: bold;
+  font-size: 15px;
+    /* font-family: none; */
+    font-weight: 540;
 }
 
 .accordion-title:after {
@@ -327,9 +368,12 @@ li{
 }
 
 .accordion-content input {
+  color:inherit;
   display: block;
-  color: #1d68a7;
+  /* color: #1d68a7; */
   font-size: 0.9em;
+  text-decoration:underline;
+  text-decoration-color: rgb(77, 77, 77);
 }
 
 .accordion-content input:hover {
@@ -347,28 +391,148 @@ li{
   height:80vh;
   overflow: scroll;
   padding:10px;
-  background:#FFF;
+  /* background:#FFF; */
   border-radius:5px;
 }
 .reserve_users_area span{
-  font-size:12px;
+  font-size:10px;
+  padding-left: 5px;
+  font-weight: 600;
 }
 .one_person{
-  width:250px;
-  height:250px;
+  /* width:250px; */
+  /* height:250px; */
+  height: 47%;
+  width: 24%;
+  background-color: #FFF;
+  border-radius: 5px;
+  margin: 5px;
 }
+
+.search_area{
+  padding: 40px 20px;
+}
+
+.user-search{
+  height: 45px;
+}
+
+.search_area label {
+  color: #2c5273;
+  font-size: small;
+}
+
+.search-form input,
+.search_inner select {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: auto;
+    height: 30px;
+    min-width: 90px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    margin-bottom: 0px;
+    padding: 0px 12px;
+    cursor: pointer;
+    border: none;
+    max-width: 100%;
+}
+
 .search_conditions span{
   cursor:pointer;
+  color: #2c5273;
 }
+.search_conditions::after{
+    content: "";
+    position: absolute;
+    right: 5px;
+    top: 335px;
+    transition: all 0.2s ease-in-out;
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-top: solid 2px #999;
+    border-right: solid 2px #999;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+
+.search_conditions.open:after {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 339px;
+}
+
 .search_conditions_inner{
   display:none;
-  background:#FFF;
+  /* background:#FFF; */
+  margin-top: 10px;
 }
+.search-sex span{
+  margin-left: 5px;
+
+}
+
+.selected_engineer ul{
+  display: flex;
+}
+
 .subject_edit_btn{
   font-size:12px;
-  color:#0000FF;
+  color:#00d9ff;
   cursor:pointer;
 }
+
+.subject_edit_btn:after{
+  content: "";
+    position: absolute;
+    left: 317px;
+    top: 281px;
+    transition: all 0.2s ease-in-out;
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-top: solid 2px #6be0f4;
+    border-right: solid 2px #6be0f4;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+
+.subject_edit_btn.open::after{
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 283px;
+}
+
 .subject_inner{
   display:none;
 }
+.subject_inner form{
+  display:flex;
+}
+/* .subject_inner input{
+  margin-left: 5px;
+} */
+
+.search-reset {
+  border-radius: 3px;
+  padding: 3px;
+  margin-left: 2px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: none;
+  color:#00b4db;
+  margin-left: 35%;
+}
+.search-reset:hover {
+  color: #90bfbf;
+}
+
+.btn-search{
+  width: 100%;
+}
+
