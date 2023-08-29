@@ -19,7 +19,7 @@ li{
 }
 .sidebar{
   width:150px;
-  height:100vh;
+  height:134vh;
   background-color:#03AAD2;
   font-weight:bold;
 }
@@ -86,7 +86,7 @@ li{
   width:70%;
 }
 
-.reserve-d tr:nth-child(even){
+.reserve-d:nth-child(even){
   background: #b1f3ff;
 }
 

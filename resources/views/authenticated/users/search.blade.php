@@ -101,9 +101,10 @@
           <div class="selected_engineer">
             <label>選択科目</label>
             <ul>
-            <li>英語 <input type="checkbox" name="subject" value="1" form="userSearchRequest"></li>
-            <li>国語 <input type="checkbox" name="subject" value="2" form="userSearchRequest"></li>
-            <li>数学 <input type="checkbox" name="subject" value="3" form="userSearchRequest"></li>
+            <li>英語 <input type="checkbox" name="subject[]" value="1" form="userSearchRequest"></li>
+            <li>国語 <input type="checkbox" name="subject[]" value="2" form="userSearchRequest"></li>
+            <li>数学 <input type="checkbox" name="subject[]" value="3" form="userSearchRequest"></li>
+            <!-- チェックボックス複数選択の時はnameに[] -->
             </ul>
           </div>
         </div>
