@@ -7,7 +7,7 @@
       <p class="mb-0">カテゴリー</p>
       <select class="w-100" form="postCreate" name="post_category_id">
         @foreach($main_categories as $main_category)
-        <option value="" selected>---</option>
+        <option hidden value="" selected>---</option>
         <optgroup label="{{ $main_category->main_category }}"></optgroup>
         <!-- サブカテゴリー表示 -->
         @foreach($main_category->subCategories as $sub_category)
@@ -60,7 +60,7 @@
       <p class="m-0">サブカテゴリー</p>
       <select class="w-100 form-control form-control-sm " form="subCategoryRequest" name="main_category_id">
         @foreach($main_categories as $main_category)
-        <option value="{{ $main_category->id }}" selected>---</option>
+        <option hidden value="{{ $main_category->id }}" selected>---</option>
         <option value="{{ $main_category->id }}">{{ $main_category->main_category }}</option>
         @endforeach
       </select>

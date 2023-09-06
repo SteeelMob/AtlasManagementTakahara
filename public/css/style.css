@@ -13,6 +13,19 @@ li{
   list-style:none;
 }
 
+.login-s{
+  position: relative;
+}
+.login-img {
+  position: absolute;
+  top: 72px;
+  left: 44%;
+}
+
+.login-img img{
+  height: 40px;
+}
+
 /* サイドバー */
 .main-container{
   width: 100%;
@@ -122,6 +135,10 @@ li{
 .sub_categories{
   display:none;
 }
+
+.post-create a{
+  margin: auto;
+}
 .post_create_area{
   background:#FFF;
   border-radius:10px;
@@ -142,6 +159,11 @@ li{
   justify-content: space-between;
 }
 
+.post-cl-btn{
+  margin-left: 70%;
+}
+
+
 .category_pt {
   font-size: 9px;
   font-weight: bold;
@@ -156,6 +178,7 @@ li{
 .like_btn,
 .un_like_btn{
   cursor:pointer;
+  color: #ccc;
 }
 .un_like,
 .un_like_btn{
@@ -394,6 +417,10 @@ li{
   /* background:#FFF; */
   border-radius:5px;
 }
+.one_person{
+  width: 25%;
+}
+
 .reserve_users_area span{
   font-size:10px;
   padding-left: 5px;
@@ -403,7 +430,7 @@ li{
   /* width:250px; */
   /* height:250px; */
   height: 47%;
-  width: 24%;
+  width: 23%;
   background-color: #FFF;
   border-radius: 5px;
   margin: 5px;
@@ -489,7 +516,7 @@ li{
 .subject_edit_btn:after{
   content: "";
     position: absolute;
-    left: 317px;
+    left: 32vw;
     top: 281px;
     transition: all 0.2s ease-in-out;
     display: block;
